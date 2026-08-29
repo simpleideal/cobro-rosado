@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bry Paradise - Datos de Transferencia</title>
+    <!-- Font Awesome para íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
         :root {
-            --card-bg: rgba(45, 25, 40, 0.92);      /* Fondo tarjeta (rosa oscuro) */
-            --accent: #f472b6;                       /* Color acento (botones y títulos) */
-            --text-main: #f8fafc;                    /* Blanco para texto principal */
-            --text-muted: #c9a0b5;                   /* Rosa grisáceo para etiquetas */
-            --success: #22c55e;                      /* Verde para el "copiado" */
+            --card-bg: rgba(45, 25, 40, 0.92);
+            --accent: #f472b6;
+            --text-main: #f8fafc;
+            --text-muted: #c9a0b5;
+            --success: #22c55e;
+            --border-color: rgba(244, 114, 182, 0.25);
+            --field-bg: rgba(200, 100, 140, 0.20);
         }
 
         * {
@@ -41,14 +45,10 @@
             width: 100%;
             max-width: 400px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-            border: 1px solid rgba(244, 114, 182, 0.25);
+            border: 1px solid var(--border-color);
         }
 
-        .header {
-            text-align: center;
-            margin-bottom: 24px;
-        }
-
+        .header { text-align: center; margin-bottom: 24px; }
         .header h1 {
             font-size: 1.15rem;
             color: var(--accent);
@@ -56,16 +56,11 @@
             letter-spacing: 0.5px;
             line-height: 1.3;
         }
-
-        .header p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-top: 6px;
-        }
+        .header p { font-size: 0.85rem; color: var(--text-muted); margin-top: 6px; }
 
         .field-group {
             margin-bottom: 12px;
-            background: rgba(200, 100, 140, 0.20);
+            background: var(--field-bg);
             padding: 12px 14px;
             border-radius: 10px;
             display: flex;
@@ -74,26 +69,9 @@
             border: 1px solid rgba(244, 114, 182, 0.1);
         }
 
-        .field-info {
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            padding-right: 8px;
-        }
-
-        .label {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .value {
-            font-size: 0.95rem;
-            font-weight: 600;
-            margin-top: 2px;
-            word-break: break-word;
-        }
+        .field-info { display: flex; flex-direction: column; overflow: hidden; padding-right: 8px; }
+        .label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+        .value { font-size: 0.95rem; font-weight: 600; margin-top: 2px; word-break: break-word; }
 
         .btn-copy {
             background-color: var(--accent);
@@ -107,11 +85,7 @@
             flex-shrink: 0;
             transition: all 0.2s ease;
         }
-
-        .btn-copy.copied {
-            background-color: var(--success);
-            color: #fff;
-        }
+        .btn-copy.copied { background-color: var(--success); color: #fff; }
 
         .btn-copy-all {
             width: 100%;
@@ -127,15 +101,8 @@
             transition: background 0.2s, transform 0.1s;
             box-shadow: 0 2px 8px rgba(0,0,0,0.3);
         }
-
-        .btn-copy-all:active {
-            transform: scale(0.97);
-        }
-
-        .btn-copy-all.copied {
-            background-color: var(--success);
-            color: #fff;
-        }
+        .btn-copy-all:active { transform: scale(0.97); }
+        .btn-copy-all.copied { background-color: var(--success); color: #fff; }
 
         .vcard-btn {
             width: 100%;
@@ -150,10 +117,7 @@
             margin-top: 10px;
             transition: background 0.2s;
         }
-
-        .vcard-btn:active {
-            background-color: rgba(244, 114, 182, 0.15);
-        }
+        .vcard-btn:active { background-color: rgba(244, 114, 182, 0.15); }
 
         .whatsapp-float {
             position: fixed;
@@ -170,15 +134,41 @@
             z-index: 1000;
             transition: transform 0.2s ease;
         }
+        .whatsapp-float:active { transform: scale(0.9); }
+        .whatsapp-float svg { width: 32px; height: 32px; fill: #ffffff; }
 
-        .whatsapp-float:active {
-            transform: scale(0.9);
+        /* ===== PIE DE PÁGINA CON REDES SOCIALES ===== */
+        .footer {
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
         }
-
-        .whatsapp-float svg {
-            width: 32px;
-            height: 32px;
-            fill: #ffffff;
+        .footer .social-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+        }
+        .social-icons a {
+            color: var(--text-muted);
+            font-size: 1.6rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        .social-icons a:hover {
+            color: var(--accent);
+            transform: scale(1.15);
+        }
+        @media (max-width: 480px) {
+            .social-icons a { font-size: 1.4rem; }
         }
     </style>
 </head>
@@ -239,7 +229,23 @@
             📋 Copiar Todos los Datos
         </button>
 
-        <button class="vcard-btn" onclick="downloadVCard()">Guardar Contacto en Agenda</button>
+        <button class="vcard-btn" onclick="downloadVCard()">📇 Guardar Contacto en Agenda</button>
+
+        <!-- ===== PIE DE PÁGINA: REDES SOCIALES ===== -->
+        <div class="footer">
+            <span class="social-label">Síguenos en redes</span>
+            <div class="social-icons">
+                <a href="https://www.instagram.com/boutique_bryy?igsi=dnE3bWZ5amVjeHJx" target="_blank" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.facebook.com/share/19Cg8w2pWA/" target="_blank" aria-label="Facebook">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="#" target="_blank" aria-label="TikTok">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+            </div>
+        </div>
     </div>
 
     <!-- Botón flotante de WhatsApp -->
