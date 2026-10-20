@@ -39,3 +39,7 @@ Si dice “envío el comprobante”, parece que el pago ya está hecho.
 
 En un llavero para Uber, el aviso de la página puede decir “al conductor”
 en lugar de “a quien te está cobrando”.
+
+## Seguridad: recursos externos verificados (integridad)
+Los estilos y scripts que la página carga desde otros sitios (jsdelivr, cdnjs, Google) ahora llevan una "huella" (`integrity="sha384-…"`). El navegador comprueba que el archivo no haya sido modificado; si alguien lo cambiara, simplemente no se carga. La página se ve igual que antes.
+Si algún día se cambia la versión de una librería, hay que actualizar también su huella.
